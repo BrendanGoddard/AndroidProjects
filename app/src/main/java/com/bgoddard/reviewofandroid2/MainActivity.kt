@@ -42,6 +42,14 @@ class MainActivity : AppCompatActivity() {
         val prefsEditor = getSharedPreferences("ReviewOfAndroid2", MODE_PRIVATE)
         binding.editTextName.setText(prefsEditor.getString("NAME", ""))
         binding.radioGroup.check(prefsEditor.getInt("NUM", R.id.radioButtonOne))
+
+        when(binding.radioGroup.checkedRadioButtonId)
+        {
+            R.id.radioButtonOne -> numS = 1
+            R.id.radioButtonTwo -> numS = 2
+            R.id.radioButtonThree -> numS = 3
+        }
+
     }
 
     fun onButtonLogCat(view: View) {
