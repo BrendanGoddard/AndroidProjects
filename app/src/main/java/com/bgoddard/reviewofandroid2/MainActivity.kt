@@ -16,8 +16,17 @@ class MainActivity : AppCompatActivity() {
     private lateinit var editText: EditText
     lateinit var binding: ActivityMainBinding
 
+    // Companion object with default Null and radio button 1, is like static and can share between activities
+    // object means singleton
+    // can access directly via name of the containing class
+    companion object {
+        var nameS:String = ""
+        var numS:Int = 1
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        println("onCreate")
         enableEdgeToEdge()
         // Step One comment out old set content view!!
 //        setContentView(R.layout.activity_main)
@@ -68,9 +77,35 @@ class MainActivity : AppCompatActivity() {
         prefsEditor.putString("NAME", binding.editTextName.text.toString())
         prefsEditor.putInt("NUM", binding.radioGroup.checkedRadioButtonId)
         prefsEditor.apply()
+        println("onPause")
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        println("onDestroy")
+    }
 
+    override fun onStop() {
+        super.onStop()
+        println("onStop")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        println("onStart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        when(numS)
+        {
+            1 -> binding.radioButtonOne.isChecked = true
+            2 -> binding.radioButtonTwo.isChecked = true
+            3 -> binding.radioButtonThree.isChecked = true
+        }
+        println("onResume")
+
+    }
 
 
 }
