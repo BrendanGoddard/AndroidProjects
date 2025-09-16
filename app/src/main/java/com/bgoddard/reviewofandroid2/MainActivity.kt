@@ -37,7 +37,16 @@ class MainActivity : AppCompatActivity() {
 
     fun onButtonLogCat(view: View) {
         println(editText.text.toString())
-        val intent = Intent(this, ReportActivity::class.java)
+        val intent = Intent(this, ReportActivity::class.java).apply {
+            putExtra("NAME", binding.editTextName.text.toString())
+            var sel:Int = 1
+            when(binding.radioGroup.checkedRadioButtonId) {
+                R.id.radioButtonOne -> sel = 1
+                R.id.radioButtonTwo -> sel = 2
+                R.id.radioButtonThree -> sel = 3
+            }
+            putExtra("NUM", sel)
+        }
         startActivity(intent)
     }
 
@@ -55,11 +64,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        val prefsEditor = getSharedPreferences("ReviewOfAndroid", MODE_PRIVATE).edit()
+        val prefsEditor = getSharedPreferences("ReviewOfAndroid2", MODE_PRIVATE).edit()
         prefsEditor.putString("NAME", binding.editTextName.text.toString())
         prefsEditor.putInt("NUM", binding.radioGroup.checkedRadioButtonId)
         prefsEditor.apply()
     }
+
+
 
 
 }
