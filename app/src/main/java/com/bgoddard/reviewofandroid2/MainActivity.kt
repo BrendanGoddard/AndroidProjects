@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -27,6 +28,10 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         editText = findViewById< EditText>(R.id.editTextName)
+
+        val prefsEditor = getSharedPreferences("ReviewOfAndroid2", MODE_PRIVATE)
+        binding.editTextName.setText(prefsEditor.getString("NAME", ""))
+        binding.radioGroup.check(prefsEditor.getInt("NUM", R.id.radioButtonOne))
     }
 
     fun onButtonLogCat(view: View) {
@@ -42,7 +47,16 @@ class MainActivity : AppCompatActivity() {
             R.id.radioButtonThree -> println("three was clicked")
         }
 
-        // other way
+
     }
+
+    override fun onPause() {
+        super.onPause()
+        val prefsEditor = getSharedPreferences("ReviewOfAndroid", MODE_PRIVATE).edit()
+        prefsEditor.putString("NAME", binding.editTextName.text.toString())
+        prefsEditor.putInt("NUM", binding.radioGroup.checkedRadioButtonId)
+        prefsEditor.apply()
+    }
+
 
 }
