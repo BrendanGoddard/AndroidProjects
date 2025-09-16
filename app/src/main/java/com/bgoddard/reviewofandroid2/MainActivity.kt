@@ -1,6 +1,7 @@
 package com.bgoddard.reviewofandroid2
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
@@ -36,6 +37,8 @@ class MainActivity : AppCompatActivity() {
 
     fun onButtonLogCat(view: View) {
         println(editText.text.toString())
+        val intent = Intent(this, ReportActivity::class.java)
+        startActivity(intent)
     }
 
     fun onRadioClick(view: View) {

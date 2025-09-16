@@ -3,7 +3,14 @@
     <string name="hello_world">Hello World Brendan</string>
     <string name="name">Please enter name here:</string>
     <string name="label">Display all info in logcat</string>
+    <string name="logcat">Logcat and Report</string>
     <string name="one">one</string>
     <string name="two">two</string>
     <string name="three">three</string>
+    <string-array name="nums">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <string name="ret">Return to Main</string>
 </resources>

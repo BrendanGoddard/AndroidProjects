@@ -1,6 +1,7 @@
 package com.bgoddard.reviewofandroid2
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -17,4 +18,6 @@ class ReportActivity : AppCompatActivity() {
             insets
         }
     }
+
+    fun onButtonReturn(view: View) {}
 }
